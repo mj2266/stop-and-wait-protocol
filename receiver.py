@@ -5,16 +5,12 @@ host ="localhost"
 port =8000
 s.connect((host,port))
 
-"""def ts(str):
-   s.send(str.encode()) 
-   data = ''
-   data = s.recv(1024).decode()
-   print (data)"""
+
 
 while 2:
    data=s.recv(1024).decode()
-   print(data+" received")
-   str="acknowledgement received"
+   print("Received --> "+data)
+   str="Acknowledgement: Message Received"
    s.send(str.encode())
 
 s.close ()

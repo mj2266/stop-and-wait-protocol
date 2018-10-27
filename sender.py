@@ -4,8 +4,7 @@ from threading import *
 serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = "localhost"
 port = 8000
-print (host)
-print (port)
+
 serversocket.bind((host, port))
 
 class client(Thread):
@@ -17,15 +16,18 @@ class client(Thread):
 
     def run(self):
         while 1:
-            r=input("send data")
+            r=input("Send data -->")
             clientsocket.send(r.encode())
             print(clientsocket.recv(1024).decode())
-            """print('Client sent:', self.sock.recv(1024).decode())
-            r=input("reply")
-            self.sock.send(r.encode())"""
+            
 
 serversocket.listen(5)
-print ('server started and listening')
+print ('Sender ready and is listening')
 while (True):
+
+    #to accept all incoming connections
     clientsocket, address = serversocket.accept()
+    print("Receiver "+str(address)+" connected")
+    #create a different thread for every 
+    #incoming connection 
     client(clientsocket, address)
